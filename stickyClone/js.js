@@ -8,14 +8,13 @@
 	cloneEl.hide();
 
 	startPos = elem.offset().top;
-	elemHeight = parseFloat(elem.css('height'));
 	$window = $(window);
 
 	$(window).scroll(function(){
-		if ($window.scrollTop() - elemHeight > startPos){
-			cloneEl.show('fast');
+		if ($window.scrollTop() > startPos){
+			cloneEl.show();
 		} else {
-			cloneEl.hide('fast');
+			cloneEl.hide();
 		}
 	});
 
