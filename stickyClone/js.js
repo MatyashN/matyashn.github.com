@@ -70,8 +70,9 @@
 			}, false)
 
 			window.addEventListener('touchstart', function(event){
-				if ($window.scrollTop() < 0) {
-						touchStart = $window.scrollTop()
+				var top = $window.scrollTop();
+				if (top < 0) {
+						touchStart = top;
 				}
 			}, false)
 
