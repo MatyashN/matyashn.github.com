@@ -56,7 +56,6 @@
 					cloneEl.show();
 				} else {
 					cloneEl.hide();
-					cloneEl.css('top', touchStart);
 				}
 			});
 
@@ -64,16 +63,11 @@
 			var touchStart = 0;
 
 			window.addEventListener('touchend', function(event){
-				if ($window.scrollTop() < 0) {
-						touchEnd = $window.scrollTop()
-				}
+
 			}, false)
 
 			window.addEventListener('touchstart', function(event){
-				var top = $window.scrollTop();
-				if (top < 0) {
-						touchStart = top;
-				}
+
 			}, false)
 
 			setTimeout(function(){
