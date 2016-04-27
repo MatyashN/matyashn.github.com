@@ -8,21 +8,21 @@ var counter = 0;
 		var event = new CustomEvent('changeProp', {});
 		
 		function _watch(){
-			console.log(counter++ + '' + window.pageYOffset)
-			window.dispatchEvent(event)
-			newValue = obj[prop];
-			if (newValue === oldValue) {
-				return false
-			}
-			else {
-				window.dispatchEvent(event)
-				oldValue = newValue;
-				info.innerHTML = newValue;
-				return true
-			};
+			console.log(counter++ + ' 	\t' + window.pageYOffset)
+			// window.dispatchEvent(event)
+			// newValue = obj[prop];
+			// if (newValue === oldValue) {
+			// 	return false
+			// }
+			// else {
+			// 	window.dispatchEvent(event)
+			// 	oldValue = newValue;
+			// 	info.innerHTML = newValue;
+			// 	return true
+			// };
 		};
 
-		setInterval(_watch, 50)
+		setInterval(_watch, 250)
 	};
 })();
 
