@@ -1,5 +1,5 @@
 var watch = (function(){
-
+var counter = 0;
 	return function(obj, prop){
 
 		var newValue, oldValue;
@@ -8,6 +8,7 @@ var watch = (function(){
 		var event = new CustomEvent('changeProp', {});
 		
 		function _watch(){
+			console.log(counter++)
 			window.dispatchEvent(event)
 			newValue = obj[prop];
 			if (newValue === oldValue) {
