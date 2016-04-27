@@ -1,25 +1,67 @@
 ;(function(){
-	var elem, cloneEl, startPos, $window, elemHeight;
 
-	elem = $(".sticky");
-	cloneEl = $(".sticky").clone();
-	cloneEl.addClass('sticky-clone');
-	$('body').prepend(cloneEl);
-	cloneEl.hide();
+	var browser, version, end, position;
 
-	startPos = elem.offset().top;
-	$window = $(window);
+	if (navigator.userAgent.search("MSIE") >= 0){
+	    position = navigator.userAgent.search("MSIE") + 5;
+	    end = navigator.userAgent.search("; Windows");
+	    browser = "MSIE";
+	    version = navigator.userAgent.substring(position,end);
+	}
+	else if (navigator.userAgent.search("Chrome") >= 0){
+	    position = navigator.userAgent.search("Chrome") + 7;
+	    end = navigator.userAgent.search(" Safari");
+	    browser = "Chrome";
+	    version = navigator.userAgent.substring(position,end);
+	}
+	else if (navigator.userAgent.search("Firefox") >= 0){
+	    position = navigator.userAgent.search("Firefox") + 8;
+	    browser = "Firefox";
+	    version = navigator.userAgent.substring(position);
+	}
+	else if (navigator.userAgent.search("Safari") >= 0 && navigator.userAgent.search("Chrome") < 0){
+	    position = navigator.userAgent.search("Version") + 8;
+	    end = navigator.userAgent.search(" Safari");
+	    browser = "Safari";
+	    version = navigator.userAgent.substring(position,end);
+	}
+	else if (navigator.userAgent.search("Opera") >= 0){
+	    position = navigator.userAgent.search("Version") + 8;
+	    browser = "Opera";
+	    version = navigator.userAgent.substring(position);
+	}
 
-	$(window).scroll(function(){
-		if ($window.scrollTop() > startPos){
-			cloneEl.show();
-		} else {
+// ##### Firefox #####
+
+	if ( browser == "Firefox" && version >= 44 ){
+
+		$(".sticky").addClass('ff')
+
+	} else {
+
+			var elem, cloneEl, startPos, $window, elemHeight;
+
+			elem = $(".sticky");
+			cloneEl = $(".sticky").clone();
+			cloneEl.addClass('sticky-clone');
+			$('body').prepend(cloneEl);
 			cloneEl.hide();
-		}
-	});
 
-	setTimeout(function(){
-				$(window).scrollTop(1);
+			startPos = elem.offset().top;
+			$window = $(window);
+
+			$(window).scroll(function(){
+				if ($window.scrollTop() > startPos){
+					cloneEl.show();
+				} else {
+					cloneEl.hide();
+				}
+			});
+
+			setTimeout(function(){
+						$(window).scrollTop(1);
 			},0)
+
+	}
 
 })();
