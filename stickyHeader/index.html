@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<meta charset="UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta content="width=device-width,initial-scale=1.0,maximum-scale=2.0" name="viewport" />
+	<meta name="HandheldFriendly" content="True" />
+	<!-- <meta name="apple-mobile-web-app-capable" content="yes" /> -->
+	<!-- <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" /> -->
+
+	<title>sticky header</title>
+	<link rel="stylesheet" href="css.css">
+</head>
+<body>
+	<div class="header" id="header"></div>
+	<div id="info" style="position:fixed; top: 250px; left:100px;"></div>
+	<div id="info1" style="position:fixed; top: 300px; left:100px;"></div>
+	<div id="info2" style="position:fixed; top: 350px; left:100px;"></div>
+	<div id="info3" style="position:fixed; top: 400px; left:100px;"></div>
+	<script src="js.js"></script>
+	<script>
+		sticky('.header', 0)
+	</script>
+</body>
+</html>
