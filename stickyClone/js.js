@@ -51,7 +51,7 @@
 			$window = $(window);
 
 			$(window).scroll(function(){
-				info.innerHTML = $window.scrollTop();
+				info.innerHTML = _getCoords().clientTop;
 				if ($window.scrollTop() > startPos){
 					cloneEl.show();
 				} else {
@@ -61,6 +61,32 @@
 
 			var touchEnd = 0;
 			var touchStart = 0;
+
+				function _getCoords(elem) {
+					if (!elem) elem = document.documentElement;
+
+					var box = elem.getBoundingClientRect();
+
+					var body = document.body;
+					var docEl = document.documentElement;
+
+					var scrollTop = window.pageYOffset || docEl.scrollTop || body.scrollTop;
+					var scrollLeft = window.pageXOffset || docEl.scrollLeft || body.scrollLeft;
+
+					var clientTop = docEl.clientTop || body.clientTop || 0;
+					var clientLeft = docEl.clientLeft || body.clientLeft || 0;
+
+					var top = box.top + scrollTop - clientTop;
+					var left = box.left + scrollLeft - clientLeft;
+
+					return {
+						top: top,
+						left: left,
+						scrollTop: scrollTop - clientTop,
+						scrollLeft: scrollLeft - clientLeft,
+						clientTop: clientTop
+					};
+				};
 
 			window.addEventListener('touchend', function(event){
 
