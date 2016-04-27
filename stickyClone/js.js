@@ -51,12 +51,15 @@
 			$window = $(window);
 
 			$(window).scroll(function(){
+				info.innerHTML = $window.scrollTop();
 				if ($window.scrollTop() > startPos){
 					cloneEl.show();
 				} else {
 					cloneEl.hide();
 				}
 			});
+
+
 
 			setTimeout(function(){
 						$(window).scrollTop(1);
