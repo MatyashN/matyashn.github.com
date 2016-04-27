@@ -1,5 +1,5 @@
 ;(function(){
-	var elem, cloneEl, startPos, $window;
+	var elem, cloneEl, startPos, $window, elemHeight;
 
 	elem = $(".sticky");
 	cloneEl = $(".sticky").clone();
@@ -8,17 +8,19 @@
 	cloneEl.hide();
 
 	startPos = elem.offset().top;
-
+	elemHeight = parseFloat(elem.css('height'));
 	$window = $(window);
 
 	$(window).scroll(function(){
-		if ($window.scrollTop() > startPos){
-			cloneEl.show();
+		if ($window.scrollTop() - elemHeight > startPos){
+			cloneEl.show('fast');
 		} else {
-			cloneEl.hide();
+			cloneEl.hide('fast');
 		}
 	});
 
-	$window.scrollTop(1);
+	setTimeout(function(){
+				$(window).scrollTop(1);
+			},0)
 
 })();
