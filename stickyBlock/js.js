@@ -8,7 +8,7 @@ var counter = 0;
 		var event = new CustomEvent('changeProp', {});
 		
 		function _watch(){
-			console.log(counter++)
+			console.log(counter++ + '' + window.pageYOffset)
 			window.dispatchEvent(event)
 			newValue = obj[prop];
 			if (newValue === oldValue) {
@@ -22,7 +22,7 @@ var counter = 0;
 			};
 		};
 
-		setInterval(_watch, 4)
+		setInterval(_watch, 50)
 	};
 })();
 
