@@ -59,7 +59,11 @@
 				}
 			});
 
-
+			window.addEventListener('touchend', function(event){
+				if ($window.scrollTop() < 0) {
+						$window.scrollTop(0)
+				}
+			}, false)
 
 			setTimeout(function(){
 						$(window).scrollTop(1);
