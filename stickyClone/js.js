@@ -56,7 +56,7 @@
 					cloneEl.show();
 				} else {
 					cloneEl.hide();
-					// cloneEl.css('top', touchEnd - touchStart);
+					cloneEl.css('top', touchStart);
 				}
 			});
 
