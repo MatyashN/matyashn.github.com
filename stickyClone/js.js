@@ -56,12 +56,22 @@
 					cloneEl.show();
 				} else {
 					cloneEl.hide();
+					cloneEl.css('top', touchEnd - touchStart);
 				}
 			});
 
+			var touchEnd = 0;
+			var touchStart = 0;
+
 			window.addEventListener('touchend', function(event){
 				if ($window.scrollTop() < 0) {
-						$window.scrollTop(0)
+						touchEnd = $window.scrollTop()
+				}
+			}, false)
+
+			window.addEventListener('touchstart', function(event){
+				if ($window.scrollTop() < 0) {
+						touchStart = $window.scrollTop()
 				}
 			}, false)
 
