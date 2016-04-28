@@ -109,7 +109,7 @@
 
   };
 
-  var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen;
+  var cancelFullScreen = window.document.exitFullscreen || window.document.mozCancelFullScreen || window.document.webkitExitFullscreen;
   
   cancelFullScreen.call(window.document);
 
