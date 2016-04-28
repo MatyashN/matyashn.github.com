@@ -40,6 +40,8 @@
         end = navigator.userAgent.search(" Safari");
         browser = "Chrome";
         version = navigator.userAgent.substring(position,end);
+    } else if (navigator.userAgent.search("AppleWebKit") >= 0 && navigator.userAgent.search("CriOS") >= 0 && /iPad|iPhone|iPod/.test(navigator.platform)) {
+        browser = "iosChrome";
     } else if (navigator.userAgent.search("Firefox") >= 0) {
         position = navigator.userAgent.search("Firefox") + 8;
         browser = "Firefox";
@@ -69,8 +71,6 @@
 
     var classSticky = elem.className;
 
-    var iPhoneChrome = /iPad|iPhone|iPod/.test(navigator.platform);
-
     stickyClone.className = classSticky + ' sticky-clone';
 
     stickyClone.style.position = 'fixed';
@@ -81,7 +81,7 @@
 
     alert(navigator.userAgent);
 
-    if(iPhoneChrome){
+    if( _getInfoBrowser().browser == 'iosChrome' ){
 
       document.documentElement.style.overflow = 'hidden';
       document.documentElement.style.height = '100%';
@@ -95,7 +95,7 @@
 
 
     function setPosition(){
-      if ( iPhoneChrome ){
+      if ( _getInfoBrowser().browser == 'iosChrome' ){
         if (_getCoords(elem).top - top <= 0) {
           stickyClone.style.display = 'block';
           elem.style.opacity = '0';
