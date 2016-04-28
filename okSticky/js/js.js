@@ -55,7 +55,7 @@
         position = navigator.userAgent.search("Version") + 8;
         browser = "Opera";
         version = navigator.userAgent.substring(position);
-    }
+    };
 
     return {
       browser: browser,
@@ -93,7 +93,6 @@
       };
 
     };
-
 
     function setPosition(){
       
