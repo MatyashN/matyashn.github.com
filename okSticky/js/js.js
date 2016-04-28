@@ -31,10 +31,10 @@
     var browser, version, end, position;
 
     if (navigator.userAgent.search("MSIE") >= 0) {
-      position = navigator.userAgent.search("MSIE") + 5;
-      end = navigator.userAgent.search("; Windows");
-      browser = "MSIE";
-      version = navigator.userAgent.substring(position,end);
+        position = navigator.userAgent.search("MSIE") + 5;
+        end = navigator.userAgent.search("; Windows");
+        browser = "MSIE";
+        version = navigator.userAgent.substring(position,end);
     } else if (navigator.userAgent.search("Chrome") >= 0) {
         position = navigator.userAgent.search("Chrome") + 7;
         end = navigator.userAgent.search(" Safari");
@@ -54,15 +54,13 @@
         browser = "Opera";
         version = navigator.userAgent.substring(position);
     }
-    
+
     return {
       browser: browser,
       version: version
     };
 
   };
-
-  
 
   function _setSticky(elem, top){
     var topStart = _getCoords(elem).top;
@@ -81,20 +79,20 @@
 
     document.body.insertBefore(stickyClone, document.body.firstChild);
 
+    alert(navigator.userAgent);
 
     if(iPhoneChrome){
-      alert(navigator.userAgent)
 
       document.documentElement.style.overflow = 'hidden';
+      document.documentElement.style.height = '100%';
 
       document.body.style.position = 'fixed';
       document.body.style.overflow = 'scroll';
       document.body.style.height = '100%';
       document.body.style.position = 'fixed';
 
-    }
+    };
 
-    alert(navigator.userAgent);
 
     function setPosition(){
       if ( iPhoneChrome ){
