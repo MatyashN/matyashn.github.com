@@ -83,42 +83,34 @@
 
     if( _getInfoBrowser().browser == 'iosChrome' ){
 
-      document.documentElement.style.overflow = 'hidden';
-      document.documentElement.style.height = '100%';
+      // document.documentElement.style.overflow = 'hidden';
+      // document.documentElement.style.height = '100%';
 
-      document.body.style.position = 'fixed';
-      document.body.style.overflow = 'scroll';
-      document.body.style.height = '100%';
-      document.body.style.position = 'fixed';
+      // document.body.style.position = 'fixed';
+      // document.body.style.overflow = 'scroll';
+      // document.body.style.height = '100%';
+      // document.body.style.position = 'fixed';
+      if (top == 0) {
+        stickyClone.style.borderTop = '100px solid lightpink'
+        stickyClone.style.top = -100 + 'px';
+      }
 
     };
 
 
     function setPosition(){
-      if ( _getInfoBrowser().browser == 'iosChrome' ){
-        if (_getCoords(elem).top - top <= 0) {
-          stickyClone.style.display = 'block';
-          elem.style.opacity = '0';
-        } else {
-          stickyClone.style.display = 'none';
-          elem.style.opacity = '1';
-        };
+      
+      if (_getCoords(elem).scrollTop + top >= topStart) {
+        stickyClone.style.display = 'block';
+        elem.style.opacity = '0';
       } else {
-        if (_getCoords(elem).scrollTop + top >= topStart) {
-          stickyClone.style.display = 'block';
-          elem.style.opacity = '0';
-        } else {
-          stickyClone.style.display = 'none';
-          elem.style.opacity = '1';
-        };
+        stickyClone.style.display = 'none';
+        elem.style.opacity = '1';
       };
+      
     };
     
-    if ( _getInfoBrowser().browser == 'iosChrome' ) {
-      document.body.addEventListener ? document.body.addEventListener( "scroll" , setPosition) : document.body.attachEvent( "scroll" , setPosition);
-    } else {
       window.addEventListener ? window.addEventListener( "scroll" , setPosition) : window.attachEvent( "scroll" , setPosition);
-    }
 
   };
 
