@@ -109,6 +109,7 @@
 
   };
 
-  document.cancelFullscreen();
+  cancelFunc = (document.cancelFullScreen || document.webkitCancelFullScreen);
+  cancelFunc.call(document);
 
 })();
