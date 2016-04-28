@@ -81,6 +81,8 @@
 
     document.body.insertBefore(stickyClone, document.body.firstChild);
 
+    alert(browser);
+
     if(true){
       alert(navigator.userAgent)
 
