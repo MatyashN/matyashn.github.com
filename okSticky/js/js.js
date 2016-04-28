@@ -89,7 +89,7 @@
       // document.body.style.height = '100%';
       // document.body.style.position = 'fixed';
       if (top == 0) {
-        stickyClone.className = stickyClone.className + 'iosSticky'
+        stickyClone.className = stickyClone.className + ' iosSticky'
       };
 
     };
