@@ -109,7 +109,8 @@
 
   };
 
-  cancelFunc = (document.cancelFullScreen || document.webkitCancelFullScreen);
-  cancelFunc.call(document);
+  var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen;
+  
+  cancelFullScreen.call(window.document);
 
 })();
