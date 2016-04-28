@@ -62,9 +62,9 @@
 
   };
 
-  if(!!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform) && _getInfoBrowser.browser == 'Chrome'){
+  if(/iPad|iPhone|iPod/.test(navigator.platform)){
     alert(navigator.platform);
-    
+
     document.documentElement.style.overflow = 'hidden';
 
     document.body.cssText="overflow: scroll; \
