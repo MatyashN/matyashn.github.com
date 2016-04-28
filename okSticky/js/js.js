@@ -113,7 +113,7 @@
         };
       };
     };
-    if ( iPhoneChrome ) {
+    if ( _getInfoBrowser().browser == 'iosChrome' ) {
       document.body.addEventListener ? document.body.addEventListener( "scroll" , setPosition) : document.body.attachEvent( "scroll" , setPosition);
     } else {
       window.addEventListener ? window.addEventListener( "scroll" , setPosition) : window.attachEvent( "scroll" , setPosition);
