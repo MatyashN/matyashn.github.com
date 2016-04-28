@@ -65,13 +65,24 @@
   function _setSticky(elem, top){
     var topStart = _getCoords(elem).top;
 
+    var stickyClone = elem.cloneNode(true);
+
+    var classSticky = elem.className;
+    stickyClone.className = classSticky + ' sticky-clone';
+
+    stickyClone.style.position = 'fixed';
+    stickyClone.style.top = top + 'px';
+    stickyClone.style.display = 'none';
+
+    document.body.insertBefore(stickyClone, document.body.firstChild);
+
     function setPosition(){
       if (_getCoords(elem).scrollTop + top >= topStart) {
-        elem.style.position = 'fixed';
-        elem.style.top = top + 'px';
+        stickyClone.style.display = 'block';
+        elem.style.opacity = '0';
       } else {
-        elem.style.position = '';
-        elem.style.top = '';
+        stickyClone.style.display = 'none';
+        elem.style.opacity = '1';
       };
     };
     
