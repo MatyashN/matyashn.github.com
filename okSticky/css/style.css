@@ -40,6 +40,6 @@ body{
 } 
 .iosSticky {
   height: 225px!important;
-  top: -150px;
+  top: -150px!important;
 }
 
