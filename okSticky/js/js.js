@@ -69,9 +69,7 @@
 
     var stickyClone = elem.cloneNode(true);
 
-    var classSticky = elem.className;
-
-    stickyClone.className = classSticky + ' sticky-clone';
+    stickyClone.className = elem.className + ' sticky-clone';
 
     stickyClone.style.position = 'fixed';
     stickyClone.style.top = top + 'px';
@@ -91,11 +89,8 @@
       // document.body.style.height = '100%';
       // document.body.style.position = 'fixed';
       if (top == 0) {
-        stickyClone.style.top = -150 + 'px';
-        stickyClone.style.borderTopWidth = '150px';
-        stickyClone.style.borderTopStyle = 'solid';
-        stickyClone.style.borderTopColor = 'lightpink';
-      }
+        stickyClone.className = stickyClone.className + 'iosSticky'
+      };
 
     };
 

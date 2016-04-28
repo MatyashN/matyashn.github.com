@@ -38,3 +38,8 @@ body{
   position: sticky;
   top: 0px;
 } 
+
+.iosSticky {
+  border-top: 150px solid lightpink;
+  top: -150px;
+}
