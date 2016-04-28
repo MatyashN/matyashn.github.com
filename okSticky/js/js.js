@@ -113,6 +113,7 @@
         };
       };
     };
+    
     if ( _getInfoBrowser().browser == 'iosChrome' ) {
       document.body.addEventListener ? document.body.addEventListener( "scroll" , setPosition) : document.body.attachEvent( "scroll" , setPosition);
     } else {
@@ -139,9 +140,5 @@
     };
 
   };
-
-  var cancelFullScreen = window.document.exitFullscreen || window.document.mozCancelFullScreen || window.document.webkitExitFullscreen;
-
-  cancelFullScreen.call(window.document);
 
 })();
