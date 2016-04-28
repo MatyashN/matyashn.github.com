@@ -67,10 +67,11 @@
 
     document.documentElement.style.overflow = 'hidden';
 
-    document.body.cssText="overflow: scroll; \
-    position: fixed; \
-    height: 100%; \
-    ";
+    document.body.style.position = 'fixed';
+    document.body.style.overflow = 'scroll';
+    document.body.style.height = '100%';
+    document.body.style.position = 'fixed';
+    
   }
 
   function _setSticky(elem, top){
