@@ -81,7 +81,7 @@
 
     document.body.insertBefore(stickyClone, document.body.firstChild);
 
-    if(){
+    if(true){
       alert(navigator.userAgent)
 
       document.documentElement.style.overflow = 'hidden';
