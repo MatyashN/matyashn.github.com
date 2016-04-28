@@ -79,7 +79,7 @@
 
     // alert(navigator.userAgent);
 
-    // if( _getInfoBrowser().browser == 'iosChrome' ){
+    if( _getInfoBrowser().browser == 'iosChrome' ){
 
     //   // document.documentElement.style.overflow = 'hidden';
     //   // document.documentElement.style.height = '100%';
@@ -88,11 +88,11 @@
     //   // document.body.style.overflow = 'scroll';
     //   // document.body.style.height = '100%';
     //   // document.body.style.position = 'fixed';
-    //   if (top == 0) {
-    //     stickyClone.className = stickyClone.className + ' iosSticky'
-    //   };
+      if (top == 0) {
+        stickyClone.className = stickyClone.className + ' iosSticky'
+      };
 
-    // };
+    };
 
 
     function setPosition(){
