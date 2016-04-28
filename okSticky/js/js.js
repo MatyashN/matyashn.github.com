@@ -62,17 +62,7 @@
 
   };
 
-  if(/iPad|iPhone|iPod/.test(navigator.platform)){
-    alert(navigator.platform);
-
-    document.documentElement.style.overflow = 'hidden';
-
-    document.body.style.position = 'fixed';
-    document.body.style.overflow = 'scroll';
-    document.body.style.height = '100%';
-    document.body.style.position = 'fixed';
-    
-  }
+  
 
   function _setSticky(elem, top){
     var topStart = _getCoords(elem).top;
@@ -80,6 +70,9 @@
     var stickyClone = elem.cloneNode(true);
 
     var classSticky = elem.className;
+
+    var iPhoneChrome = /iPad|iPhone|iPod/.test(navigator.platform) && browser == 'Chrome';
+
     stickyClone.className = classSticky + ' sticky-clone';
 
     stickyClone.style.position = 'fixed';
@@ -88,17 +81,42 @@
 
     document.body.insertBefore(stickyClone, document.body.firstChild);
 
+    if(iPhoneChrome){
+      alert('x')
+
+      document.documentElement.style.overflow = 'hidden';
+
+      document.body.style.position = 'fixed';
+      document.body.style.overflow = 'scroll';
+      document.body.style.height = '100%';
+      document.body.style.position = 'fixed';
+
+    }
+
     function setPosition(){
-      if (_getCoords(elem).scrollTop + top >= topStart) {
-        stickyClone.style.display = 'block';
-        elem.style.opacity = '0';
+      if ( iPhoneChrome ){
+        if (_getCoords(elem).top - top <= 0) {
+          stickyClone.style.display = 'block';
+          elem.style.opacity = '0';
+        } else {
+          stickyClone.style.display = 'none';
+          elem.style.opacity = '1';
+        };
       } else {
-        stickyClone.style.display = 'none';
-        elem.style.opacity = '1';
+        if (_getCoords(elem).scrollTop + top >= topStart) {
+          stickyClone.style.display = 'block';
+          elem.style.opacity = '0';
+        } else {
+          stickyClone.style.display = 'none';
+          elem.style.opacity = '1';
+        };
       };
     };
-    
-    window.addEventListener ? window.addEventListener( "scroll" , setPosition) : window.attachEvent( "scroll" , setPosition);
+    if ( iPhoneChrome ) {
+      document.body.addEventListener ? document.body.addEventListener( "scroll" , setPosition) : document.body.attachEvent( "scroll" , setPosition);
+    } else {
+      window.addEventListener ? window.addEventListener( "scroll" , setPosition) : window.attachEvent( "scroll" , setPosition);
+    }
 
   };
 
