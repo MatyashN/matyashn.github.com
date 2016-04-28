@@ -41,7 +41,6 @@ body{
 
 .iosSticky {
   border-top: 150px solid lightpink;
-  top: -150px;
   border: 1px solid black;
-  background: red;
+  background: blue;
 }
