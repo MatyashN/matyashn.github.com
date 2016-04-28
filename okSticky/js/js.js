@@ -81,8 +81,8 @@
 
     document.body.insertBefore(stickyClone, document.body.firstChild);
 
-    if(iPhoneChrome){
-      alert('x')
+    if(){
+      alert(navigator.userAgent)
 
       document.documentElement.style.overflow = 'hidden';
 
