@@ -39,11 +39,7 @@ body{
   top: 0px;
 } 
 .iosSticky {
-  border-top: -webkit-150px solid black;
-  border-top: -moz-150px solid black;
-  border-top: -ms-150px solid black;
-  border-top: -o-150px solid black;
-  border-top: 150px solid black;
+  height: 225px!important;
   top: -150px;
 }
 
