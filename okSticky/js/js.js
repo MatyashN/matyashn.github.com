@@ -91,8 +91,10 @@
       // document.body.style.height = '100%';
       // document.body.style.position = 'fixed';
       if (top == 0) {
-        stickyClone.style.height = '175px'
-        stickyClone.style.top = -100 + 'px';
+        stickyClone.style.top = -150 + 'px';
+        stickyClone.style.borderTopWidth = '150px';
+        stickyClone.style.borderTopStyle = 'solid';
+        stickyClone.style.borderTopColor = 'lightpink';
       }
 
     };
