@@ -91,7 +91,7 @@
       // document.body.style.height = '100%';
       // document.body.style.position = 'fixed';
       if (top == 0) {
-        stickyClone.style.borderTop = '100px solid lightpink'
+        stickyClone.style.height = '175px'
         stickyClone.style.top = -100 + 'px';
       }
 
