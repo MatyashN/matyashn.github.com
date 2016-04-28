@@ -71,7 +71,7 @@
 
     var classSticky = elem.className;
 
-    var iPhoneChrome = /iPad|iPhone|iPod/.test(navigator.platform) && browser == 'Chrome';
+    var iPhoneChrome = /iPad|iPhone|iPod/.test(navigator.platform);
 
     stickyClone.className = classSticky + ' sticky-clone';
 
@@ -81,9 +81,8 @@
 
     document.body.insertBefore(stickyClone, document.body.firstChild);
 
-    alert(browser);
 
-    if(true){
+    if(iPhoneChrome){
       alert(navigator.userAgent)
 
       document.documentElement.style.overflow = 'hidden';
