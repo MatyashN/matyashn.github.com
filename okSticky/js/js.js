@@ -62,6 +62,17 @@
 
   };
 
+  if(!!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform) && _getInfoBrowser.browser == 'Chrome'){
+    alert(navigator.platform);
+    
+    document.documentElement.style.overflow = 'hidden';
+
+    document.body.cssText="overflow: scroll; \
+    position: fixed; \
+    height: 100%; \
+    ";
+  }
+
   function _setSticky(elem, top){
     var topStart = _getCoords(elem).top;
 
@@ -110,7 +121,7 @@
   };
 
   var cancelFullScreen = window.document.exitFullscreen || window.document.mozCancelFullScreen || window.document.webkitExitFullscreen;
-  
+
   cancelFullScreen.call(window.document);
 
 })();
