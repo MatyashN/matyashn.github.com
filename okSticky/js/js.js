@@ -94,6 +94,8 @@
 
     }
 
+    alert(navigator.userAgent);
+
     function setPosition(){
       if ( iPhoneChrome && _getInfoBrowser.browser == 'appleChrome' ){
         if (_getCoords(elem).top - top <= 0) {
