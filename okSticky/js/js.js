@@ -53,8 +53,8 @@
         position = navigator.userAgent.search("Version") + 8;
         browser = "Opera";
         version = navigator.userAgent.substring(position);
-    };
-
+    }else if (navigator.userAgent.search("AppleWebKit") >= 0 && navigator.userAgent.search("Mobile") >= 0);
+        browser = "appleChrome"
     return {
       browser: browser,
       version: version
@@ -82,7 +82,7 @@
     document.body.insertBefore(stickyClone, document.body.firstChild);
 
 
-    if(iPhoneChrome){
+    if(iPhoneChrome && _getInfoBrowser.browser == 'appleChrome'){
       alert(navigator.userAgent)
 
       document.documentElement.style.overflow = 'hidden';
@@ -95,7 +95,7 @@
     }
 
     function setPosition(){
-      if ( iPhoneChrome ){
+      if ( iPhoneChrome && _getInfoBrowser.browser == 'appleChrome' ){
         if (_getCoords(elem).top - top <= 0) {
           stickyClone.style.display = 'block';
           elem.style.opacity = '0';
