@@ -45,4 +45,9 @@ body{
   height: 225px!important;
   top: -150px!important;
 }
+.scrollBox{
+  overflow: scroll;
+  height: 100vh;
+  -webkit-overflow-scrolling: touch;
+}
 

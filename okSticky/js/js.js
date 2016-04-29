@@ -75,38 +75,52 @@
     stickyClone.style.top = top + 'px';
     stickyClone.style.display = 'none';
 
-    document.body.insertBefore(stickyClone, document.body.firstChild);
+    document.body.insertBefore(stickyClone, mainWrap);
 
     // alert(navigator.userAgent);
 
     if( _getInfoBrowser().browser == 'iosChrome' ){
 
-    //   // document.documentElement.style.overflow = 'hidden';
-    //   // document.documentElement.style.height = '100%';
+      document.documentElement.style.overflow = 'hidden';
 
-    //   // document.body.style.position = 'fixed';
-    //   // document.body.style.overflow = 'scroll';
-    //   // document.body.style.height = '100%';
-    //   // document.body.style.position = 'fixed';
-      if (top == 0) {
-        stickyClone.className = stickyClone.className + ' iosSticky'
+      mainWrap.className = 'scrollBox'; 
+
+      var top_offset = _getCoords(elem).top;
+
+      function setPosition(){
+
+        var scrollTop = mainWrap.scrollTop;
+        if (scrollTop  > top_offset) {
+            stickyClone.style.display = 'block';
+            elem.style.opacity = '0';
+        } else {
+            stickyClone.style.display = 'none';
+            elem.style.opacity = '1';
+        }
+
       };
 
-    };
+      mainWrap.addEventListener ? mainWrap.addEventListener( "scroll" , setPosition) : mainWrap.attachEvent( "scroll" , setPosition);
 
-    function setPosition(){
-      
-      if (_getCoords(elem).scrollTop + top >= topStart) {
-        stickyClone.style.display = 'block';
-        elem.style.opacity = '0';
-      } else {
-        stickyClone.style.display = 'none';
-        elem.style.opacity = '1';
+    } else {
+      function setPosition(){
+        
+        if (_getCoords(elem).scrollTop + top >= topStart) {
+          stickyClone.style.display = 'block';
+          elem.style.opacity = '0';
+        } else {
+          stickyClone.style.display = 'none';
+          elem.style.opacity = '1';
+        };
+        
       };
-      
-    };
-    
+
       window.addEventListener ? window.addEventListener( "scroll" , setPosition) : window.attachEvent( "scroll" , setPosition);
+
+    };
+
+    
+    
 
   };
 
