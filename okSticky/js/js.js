@@ -57,7 +57,7 @@
 
     mainWrap.insertBefore(stickyClone, mainWrap.firstChild);
 
-    document.documentElement.style.overflow = 'hidden';
+    // document.documentElement.style.overflow = 'hidden';
 
     // mainWrap.className = 'scrollBox'; 
 
@@ -66,12 +66,11 @@
     function setPosition(){
 
       var scrollTop = mainWrap.scrollTop;
+      
       if (scrollTop  > top_offset) {
           stickyClone.style.display = 'block';
-          elem.style.opacity = '0';
       } else {
           stickyClone.style.display = 'none';
-          elem.style.opacity = '1';
       }
 
     };

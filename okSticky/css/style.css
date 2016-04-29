@@ -2,12 +2,10 @@ html {
   overflow: hidden;
 }
 body{
-  /*height: 3000px;*/
   margin:0px;
-  
 }
 #mainWrap {
-  background: #cedbe9; /* Old browsers */
+  background: #cedbe9;
 }
 .placeholder {
   width: 100%;
@@ -46,7 +44,7 @@ body{
   top: -150px!important;
 }
 .scrollBox{
-  overflow: scroll;
+  overflow-y: scroll;
   height: 100vh;
   -webkit-overflow-scrolling: touch;
 }
