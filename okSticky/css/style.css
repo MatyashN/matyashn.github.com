@@ -4,13 +4,10 @@ html {
 body{
   /*height: 3000px;*/
   margin:0px;
-  background: #cedbe9; /* Old browsers */
-  background: -moz-linear-gradient(top, #cedbe9 0%, #aac5de 11%, #56db41 23%, #56db41 23%, #56db41 29%, #47d640 37%, #6199c7 48%, #ed49cf 57%, #fcfc50 76%, #f94a5c 91%, #26558b 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(top, #cedbe9 0%,#aac5de 11%,#56db41 23%,#56db41 23%,#56db41 29%,#47d640 37%,#6199c7 48%,#ed49cf 57%,#fcfc50 76%,#f94a5c 91%,#26558b 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to bottom, #cedbe9 0%,#aac5de 11%,#56db41 23%,#56db41 23%,#56db41 29%,#47d640 37%,#6199c7 48%,#ed49cf 57%,#fcfc50 76%,#f94a5c 91%,#26558b 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  
 }
-.mainWrap {
-  height: 2500px;
+#mainWrap {
+  background: #cedbe9; /* Old browsers */
 }
 .placeholder {
   width: 100%;
