@@ -14,6 +14,15 @@
     }
 
     var startTouchMove, nowPoint, startPoint, endPoint;
+    startPoint = {
+        x:0,
+        y:0
+    }
+    endPoint = {
+        x:0,
+        y:0
+    }
+
 
     function touchStartHandler(event, elem){
         
