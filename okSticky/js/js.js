@@ -65,6 +65,7 @@
   };
 
   function _setSticky(elem, top){
+
     var topStart = _getCoords(elem).top;
 
     var stickyClone = elem.cloneNode(true);
@@ -75,11 +76,11 @@
     stickyClone.style.top = top + 'px';
     stickyClone.style.display = 'none';
 
-    document.body.insertBefore(stickyClone, mainWrap);
+    mainWrap.insertBefore(stickyClone, mainWrap.firstChild);
 
     // alert(navigator.userAgent);
 
-    if( true ){
+    // if( true ){
 
       document.documentElement.style.overflow = 'hidden';
 
@@ -101,7 +102,7 @@
       };
 
       mainWrap.addEventListener ? mainWrap.addEventListener( "scroll" , setPosition) : mainWrap.attachEvent( "scroll" , setPosition);
-}
+    // }
     // } else {
     //   function setPosition(){
         
@@ -118,10 +119,6 @@
     //   window.addEventListener ? window.addEventListener( "scroll" , setPosition) : window.attachEvent( "scroll" , setPosition);
 
     // };
-
-    
-    
-
   };
 
   function _stickyForFF(elem, top){
