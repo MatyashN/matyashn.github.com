@@ -30,30 +30,9 @@
 
     var browser, version, end, position;
 
-    if (navigator.userAgent.search("MSIE") >= 0) {
-        position = navigator.userAgent.search("MSIE") + 5;
-        end = navigator.userAgent.search("; Windows");
-        browser = "MSIE";
-        version = navigator.userAgent.substring(position,end);
-    } else if (navigator.userAgent.search("Chrome") >= 0) {
-        position = navigator.userAgent.search("Chrome") + 7;
-        end = navigator.userAgent.search(" Safari");
-        browser = "Chrome";
-        version = navigator.userAgent.substring(position,end);
-    } else if (navigator.userAgent.search("AppleWebKit") >= 0 && navigator.userAgent.search("CriOS") >= 0 && /iPad|iPhone|iPod/.test(navigator.platform)) {
-        browser = "iosChrome";
-    } else if (navigator.userAgent.search("Firefox") >= 0) {
+    if (navigator.userAgent.search("Firefox") >= 0) {
         position = navigator.userAgent.search("Firefox") + 8;
         browser = "Firefox";
-        version = navigator.userAgent.substring(position);
-    } else if (navigator.userAgent.search("Safari") >= 0 && navigator.userAgent.search("Chrome") < 0) {
-        position = navigator.userAgent.search("Version") + 8;
-        end = navigator.userAgent.search(" Safari");
-        browser = "Safari";
-        version = navigator.userAgent.substring(position,end);
-    } else if (navigator.userAgent.search("Opera") >= 0) {
-        position = navigator.userAgent.search("Version") + 8;
-        browser = "Opera";
         version = navigator.userAgent.substring(position);
     };
 
@@ -78,47 +57,27 @@
 
     mainWrap.insertBefore(stickyClone, mainWrap.firstChild);
 
-    // alert(navigator.userAgent);
+    document.documentElement.style.overflow = 'hidden';
 
-    // if( true ){
+    // mainWrap.className = 'scrollBox'; 
 
-      document.documentElement.style.overflow = 'hidden';
+    var top_offset = _getCoords(elem).top;
 
-      mainWrap.className = 'scrollBox'; 
+    function setPosition(){
 
-      var top_offset = _getCoords(elem).top;
+      var scrollTop = mainWrap.scrollTop;
+      if (scrollTop  > top_offset) {
+          stickyClone.style.display = 'block';
+          elem.style.opacity = '0';
+      } else {
+          stickyClone.style.display = 'none';
+          elem.style.opacity = '1';
+      }
 
-      function setPosition(){
+    };
 
-        var scrollTop = mainWrap.scrollTop;
-        if (scrollTop  > top_offset) {
-            stickyClone.style.display = 'block';
-            elem.style.opacity = '0';
-        } else {
-            stickyClone.style.display = 'none';
-            elem.style.opacity = '1';
-        }
-
-      };
-
-      mainWrap.addEventListener ? mainWrap.addEventListener( "scroll" , setPosition) : mainWrap.attachEvent( "scroll" , setPosition);
-    // }
-    // } else {
-    //   function setPosition(){
-        
-    //     if (_getCoords(elem).scrollTop + top >= topStart) {
-    //       stickyClone.style.display = 'block';
-    //       elem.style.opacity = '0';
-    //     } else {
-    //       stickyClone.style.display = 'none';
-    //       elem.style.opacity = '1';
-    //     };
-        
-    //   };
-
-    //   window.addEventListener ? window.addEventListener( "scroll" , setPosition) : window.attachEvent( "scroll" , setPosition);
-
-    // };
+    mainWrap.addEventListener ? mainWrap.addEventListener( "scroll" , setPosition) : mainWrap.attachEvent( "scroll" , setPosition);
+    
   };
 
   function _stickyForFF(elem, top){
