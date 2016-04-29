@@ -6,8 +6,8 @@
 
     function _getPosition(elem){
         var scrollTop = _getCoords(elem).scrollTop;
-        if (scrollTop - ( startPoint - endPoint ) > top_offset) {
-            elem.style.top = scrollTop - top_offset - ( startPoint - endPoint ) - 15 + "px";
+        if (scrollTop  > top_offset) {
+            elem.style.top = scrollTop - top_offset  + "px";
         } else {
             elem.style.top = '';
         }
