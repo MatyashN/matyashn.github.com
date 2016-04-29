@@ -79,7 +79,7 @@
 
     // alert(navigator.userAgent);
 
-    if( _getInfoBrowser().browser == 'iosChrome' ){
+    if( true ){
 
       document.documentElement.style.overflow = 'hidden';
 
@@ -101,23 +101,23 @@
       };
 
       mainWrap.addEventListener ? mainWrap.addEventListener( "scroll" , setPosition) : mainWrap.attachEvent( "scroll" , setPosition);
-
-    } else {
-      function setPosition(){
+}
+    // } else {
+    //   function setPosition(){
         
-        if (_getCoords(elem).scrollTop + top >= topStart) {
-          stickyClone.style.display = 'block';
-          elem.style.opacity = '0';
-        } else {
-          stickyClone.style.display = 'none';
-          elem.style.opacity = '1';
-        };
+    //     if (_getCoords(elem).scrollTop + top >= topStart) {
+    //       stickyClone.style.display = 'block';
+    //       elem.style.opacity = '0';
+    //     } else {
+    //       stickyClone.style.display = 'none';
+    //       elem.style.opacity = '1';
+    //     };
         
-      };
+    //   };
 
-      window.addEventListener ? window.addEventListener( "scroll" , setPosition) : window.attachEvent( "scroll" , setPosition);
+    //   window.addEventListener ? window.addEventListener( "scroll" , setPosition) : window.attachEvent( "scroll" , setPosition);
 
-    };
+    // };
 
     
     
