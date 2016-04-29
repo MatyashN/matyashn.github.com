@@ -1,18 +1,12 @@
 
-      // document.documentElement.style.overflow = 'hidden';
-      // document.documentElement.style.height = '100%';
-
-      // document.body.style.position = 'fixed';
-      // document.body.style.overflow = 'scroll';
-      // document.body.style.height = '100vh';
 
     var el = document.getElementById('header');
     var top_offset = _getCoords(el).top;
-        
+    
     el.style.top = '';
 
     function _getPosition(elem){
-        var scrollTop = _getCoords(elem).scrollTop;
+        var scrollTop = scrollBox.scrollTop;
         if (scrollTop  > top_offset) {
             elem.style.top = scrollTop - top_offset  + "px";
         } else {
@@ -20,36 +14,12 @@
         }
     }
 
-    var startTouchMove, nowPoint, startPoint, endPoint;
-    
-    startPoint = 0;
-    endPoint = 0;
-
-    function touchStartHandler(event, elem){
-        
-        if (_getCoords().scrollTop < 0){
-            startPoint = _getCoords().scrollTop;
-            window.scrollTo(0,1)
-        } 
-        
- 
-    };
-
-    function touchEndHandler(event){
-
-        if (_getCoords().scrollTop < 0) {
-            endPoint = _getCoords().scrollTop;
-            window.scrollTo(0,1)
-        }
-
-    };
+  
 
 
 
 
-    window.addEventListener('scroll', function(){_getPosition(el)}, false)
-    window.removeEventListener('touchstart', touchStartHandler, false)
-    window.addEventListener('touchend', touchEndHandler, false)
+    scrollBox.addEventListener('scroll', function(){_getPosition(el)}, false)
 
     function _getCoords(elem) {
         if (!elem) elem = document.documentElement;
