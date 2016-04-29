@@ -7,7 +7,7 @@
     function _getPosition(elem){
         var scrollTop = _getCoords(elem).scrollTop;
         if (scrollTop > top_offset) {
-            elem.style.top = scrollTop - top_offset + ( endPoint - startPoint ) + "px";
+            elem.style.top = scrollTop - top_offset + ( endPoint - startPoint ) / 2 - 5 + "px";
         } else {
             elem.style.top = '';
         }
@@ -22,7 +22,7 @@
         
         if (_getCoords().scrollTop < 0){
             startPoint = _getCoords().scrollTop;
-        }
+        } 
         
 
     };
@@ -31,7 +31,7 @@
 
         if (_getCoords().scrollTop < 0) {
             endPoint = _getCoords().scrollTop;
-        } 
+        }
 
     };
 
