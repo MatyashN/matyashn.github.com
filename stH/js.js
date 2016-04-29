@@ -7,29 +7,21 @@
     function _getPosition(elem){
         var scrollTop = _getCoords(elem).scrollTop;
         if (scrollTop > top_offset) {
-            elem.style.top = scrollTop - top_offset + ( startPoint.y - endPoint.y) + "px";
+            elem.style.top = scrollTop - top_offset + ( endPoint - startPoint ) + "px";
         } else {
             elem.style.top = '';
         }
     }
 
     var startTouchMove, nowPoint, startPoint, endPoint;
-    startPoint = {
-        x:0,
-        y:0
-    }
-
-    endPoint = {
-        x:0,
-        y:0
-    }
-
+    
+    startPoint = 0;
+    endPoint = 0;
 
     function touchStartHandler(event, elem){
         
         if (_getCoords().scrollTop < 0){
-            startPoint.x = event.changedTouches[0].clientX;
-            startPoint.y = event.changedTouches[0].clientY;
+            startPoint = _getCoords().scrollTop;
         }
         
 
@@ -38,8 +30,7 @@
     function touchEndHandler(event){
 
         if (_getCoords().scrollTop < 0) {
-            endPoint.x = event.changedTouches[0].clientX;
-            endPoint.y = event.changedTouches[0].clientY;
+            endPoint = _getCoords().scrollTop;
         } 
 
     };
