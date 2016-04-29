@@ -1,4 +1,11 @@
 
+      document.documentElement.style.overflow = 'hidden';
+      // document.documentElement.style.height = '100%';
+
+      document.body.style.position = 'fixed';
+      document.body.style.overflow = 'scroll';
+      document.body.style.height = '100vh';
+
     var el = document.getElementById('header');
     var top_offset = _getCoords(el).top;
         
