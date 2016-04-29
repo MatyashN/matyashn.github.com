@@ -22,6 +22,7 @@
         
         if (_getCoords().scrollTop < 0){
             startPoint = _getCoords().scrollTop;
+            window.scrollTo(0,1)
         } 
         
 
@@ -31,6 +32,7 @@
 
         if (_getCoords().scrollTop < 0) {
             endPoint = _getCoords().scrollTop;
+            window.scrollTo(0,1)
         }
 
     };
