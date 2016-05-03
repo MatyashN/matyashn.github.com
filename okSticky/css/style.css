@@ -68,6 +68,7 @@ body{
   overflow: scroll;
   background: gold;
   padding: 5px;
+  opacity: 0.5;
 }
 .sticky button {
   float: right;
