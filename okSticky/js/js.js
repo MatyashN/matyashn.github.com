@@ -46,19 +46,11 @@
   function _setSticky(elem, top){
 
     var topStart = _getCoords(elem).top;
-
     var stickyClone = elem.cloneNode(true);
-
     stickyClone.className = elem.className + ' sticky-clone';
-
     stickyClone.style.top = top + 'px';
-    
 
     mainWrap.insertBefore(stickyClone, mainWrap.firstChild);
-
-    // document.documentElement.style.overflow = 'hidden';
-
-    // mainWrap.className = 'scrollBox'; 
 
     var top_offset = _getCoords(elem).top;
 
@@ -66,22 +58,22 @@
 
       var scrollTop = mainWrap.scrollTop;
       
-      if (scrollTop  > top_offset) {
+      if (scrollTop + top  > top_offset) {
           stickyClone.style.display = 'block';
       } else {
           stickyClone.style.display = 'none';
-      }
+      };
 
     };
 
     function _setWidth(){
       stickyClone.style.width = mainWrap.clientWidth + 'px';
-    }
+    };
 
     _setWidth();
 
     mainWrap.addEventListener ? mainWrap.addEventListener( "scroll" , _setPosition) : mainWrap.attachEvent( "scroll" , _setPosition);
-    
+
     window.addEventListener ? window.addEventListener( "resize" , _setWidth) : window.attachEvent( "resize" , _setWidth);
     
   };
