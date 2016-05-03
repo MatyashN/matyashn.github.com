@@ -17,7 +17,9 @@
 <body>
   <div id="mainWrap" class="scrollBox">
   <div class="placeholder"></div>
-  <div class="sticky"></div>
+  <div class="sticky">
+    <button>PoPup</button>
+  </div>
   <div class="main">
     <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur, nesciunt quasi labore. At adipisci, expedita recusandae ducimus voluptates quae, dolorum dignissimos consequatur repellat fuga molestiae, quod, omnis est voluptate! Earum!</div>
     <div>Cupiditate iste animi illo dolor amet odio quasi distinctio eum incidunt beatae, quo numquam quod et magni. Incidunt hic explicabo recusandae velit sunt eaque cupiditate voluptas tenetur temporibus impedit. Ratione.</div>
@@ -35,14 +37,35 @@
     <div>Id non harum ipsa, perferendis numquam aut odit molestiae omnis laudantium cum beatae delectus deleniti fugiat illum ipsam facilis veritatis dolores possimus vel, labore sapiente ut, minima eveniet quae alias.</div>
     <div>Explicabo placeat praesentium quis est odio error incidunt quisquam, odit facilis. Veniam esse saepe, molestiae alias, id minus sit incidunt iusto quam voluptatum officia delectus dicta voluptatibus atque cum, animi!</div>
   </div>
+
+  <div id="popup" class="popup-wrap">
+  <div class="popup-content">
+    <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum ab commodi non veritatis distinctio, soluta et illo nulla, ipsum, asperiores, possimus corporis laboriosam debitis dolore natus. Dolores aspernatur neque iusto!</div>
+    <div>Iste adipisci cumque repellendus error, laudantium aperiam tempore sunt totam maxime consequuntur accusantium mollitia dolore. At aperiam tempore error atque vel, corporis nesciunt est ipsum debitis, sunt dolorem ea praesentium.</div>
+    <div>Velit sunt laboriosam recusandae repellat adipisci tenetur quae rem sed maiores, optio vero deserunt dolorum soluta animi eaque voluptatum vel blanditiis corporis cum in, ipsa sit doloremque est! Eius, expedita.</div>
+    <div>Tempora delectus neque at, reprehenderit assumenda id, repudiandae reiciendis sequi aliquid perspiciatis libero! Numquam ab tenetur maxime quo, laboriosam, accusantium molestias tempora, odio, quos illo similique reprehenderit iure aspernatur excepturi!</div>
+    <div>Culpa accusantium eius saepe enim sed, expedita numquam tenetur corporis adipisci quidem provident vel qui quisquam commodi dignissimos optio beatae laborum fugiat porro dolorum distinctio. Voluptates, perspiciatis nostrum. Assumenda, itaque.</div>
+    <div>Non impedit provident, dicta repudiandae consequatur explicabo nisi tempora facilis quas. Nemo, omnis sunt, ullam hic distinctio illum obcaecati quasi, corrupti possimus eos odit inventore. Reprehenderit illum dolorum mollitia quo!</div>
+    <div>Nostrum odit iure id rem, debitis voluptatem placeat sunt quod velit facilis, est animi cum beatae excepturi deserunt harum delectus, voluptatum corrupti provident! Tempore consectetur reiciendis unde. Dolor, laborum reprehenderit.</div>
+  </div>
+</div>
 </div>
 
+
   
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+  <script src="libraries/jquery-1.12.3.js"></script>
   <script src="js/js.js"></script>
+  <script src="js/popup.js"></script>
+
   <script>
     jQuery(document).ready(function($) {
       $('.sticky').sticky(0);
+      $('.sticky button').click(function(){
+        $('#popup').toggle();
+      });
+      $('.popup-wrap').click(function(){
+        $('#popup').toggle();
+      });
     });
   </script>
 </body>
