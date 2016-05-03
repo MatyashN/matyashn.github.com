@@ -72,9 +72,9 @@
 
     _setWidth();
 
-    mainWrap.addEventListener ? mainWrap.addEventListener( "scroll" , _setPosition) : mainWrap.attachEvent( "scroll" , _setPosition);
+    mainWrap.addEventListener ? mainWrap.addEventListener( "scroll" , _setPosition) : mainWrap.attachEvent( "onscroll" , _setPosition);
 
-    window.addEventListener ? window.addEventListener( "resize" , _setWidth) : window.attachEvent( "resize" , _setWidth);
+    window.addEventListener ? window.addEventListener( "resize" , _setWidth) : window.attachEvent( "onresize" , _setWidth);
     
   };
 
