@@ -60,6 +60,7 @@
   <script>
     jQuery(document).ready(function($) {
       $('.sticky').sticky(0);
+
       $('.sticky button').click(function(){
         $('#popup').toggle();
       });
@@ -67,6 +68,10 @@
         $('#popup').toggle();
       });
       $( ".popup-content" ).click(function( event ) {
+        event.stopPropagation();
+      });
+      $('#popup').bind("touchmove",function(ev){
+        console.log('1');
         event.stopPropagation();
       });
     });
