@@ -66,7 +66,7 @@ body{
   height: 50%;
   margin: auto;
   overflow: scroll;
-  background: gold;
+  background: red;
 }
 .sticky button {
   float: right;
