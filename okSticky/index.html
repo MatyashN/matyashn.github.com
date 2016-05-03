@@ -52,7 +52,6 @@
 </div>
 
 
-  
   <script src="libraries/jquery-1.12.3.js"></script>
   <script src="js/js.js"></script>
   <script src="js/popup.js"></script>
@@ -70,10 +69,12 @@
       $( '.popup-content' ).click(function( event ) {
         event.stopPropagation();
       });
+
       popup.addEventListener('touchmove', function(event){
         console.log('1');
         event.stopPropagation();
-      }, false)
+      }, false);
+
     });
   </script>
 </body>
