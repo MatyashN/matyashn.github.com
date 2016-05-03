@@ -51,9 +51,8 @@
 
     stickyClone.className = elem.className + ' sticky-clone';
 
-    stickyClone.style.position = 'fixed';
     stickyClone.style.top = top + 'px';
-    stickyClone.style.display = 'none';
+    
 
     mainWrap.insertBefore(stickyClone, mainWrap.firstChild);
 
@@ -63,7 +62,7 @@
 
     var top_offset = _getCoords(elem).top;
 
-    function setPosition(){
+    function _setPosition(){
 
       var scrollTop = mainWrap.scrollTop;
       
@@ -75,7 +74,15 @@
 
     };
 
-    mainWrap.addEventListener ? mainWrap.addEventListener( "scroll" , setPosition) : mainWrap.attachEvent( "scroll" , setPosition);
+    function _setWidth(){
+      stickyClone.style.width = mainWrap.clientWidth + 'px';
+    }
+
+    _setWidth();
+
+    mainWrap.addEventListener ? mainWrap.addEventListener( "scroll" , _setPosition) : mainWrap.attachEvent( "scroll" , _setPosition);
+    
+    window.addEventListener ? window.addEventListener( "resize" , _setWidth) : window.attachEvent( "resize" , _setWidth);
     
   };
 
