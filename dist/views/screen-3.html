@@ -8,13 +8,13 @@
   <div class="title">3.Отметьте социальные сети</div>
   <div class="content">
     <ul>
-      <li data-ng-repeat="socialNetwork in socialNetworks">
+      <li data-ng-repeat="socialNetwork in data.netWorks">
         <label><input type="checkbox" data-ng-model="socialNetwork.status">{{socialNetwork.name}}</label>
-        <input type="text" placeholder="Ваша страница в {{socialNetwork.name}}" data-ng-disabled="!socialNetwork.status" data-ng-model="socialNetwork.url" data-ng-change="addNetWorks()">
+        <input type="text" placeholder="Ваша страница в {{socialNetwork.name}}" data-ng-disabled="!socialNetwork.status" data-ng-model="socialNetwork.url">
       </li>
     </ul>
   </div>
-  <div class="warning"><p data-ng-show="!data.netWorks[0]">Введите хотя бы один контакт</p></div>
+  <div class="warning"></div>
   <div class="btn-arrow">
     <a href="#/screen-2">< Предыдущий</a>
     <a href="#/screen-4" data-ng-class="!data.netWorks[0] ? 'disabled' : 'able'">Следующий ></a>

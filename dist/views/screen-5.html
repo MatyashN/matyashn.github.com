@@ -5,7 +5,7 @@
       <p>{{data.mail}}</p>
       <p>{{data.country.countryName}}, {{data.city.name}}</p>
       <ul>
-        <li data-ng-repeat="netWork in data.netWorks"><span>{{netWork.name}}</span> : {{netWork.url}}</li>
+        <li data-ng-repeat="netWork in data.netWorks | filter : {status:true}"><span>{{netWork.name}}</span> : {{netWork.url}}</li>
       </ul>
     </div>
     <div style="background-image:url('{{data.image.url}}')"></div>
