@@ -1,0 +1,22 @@
+<div class="scr scr-2">
+  <div class="nav">
+    <a href="#/screen-1" class="btn">1</a>
+    <a href="#/screen-2" class="btn active">2</a>
+    <a href="#/screen-3" class="btn" data-ng-class="!data.city.name ? 'disabled' : 'able'">3</a>
+    <a href="#/screen-4" class="btn disabled">4</a>
+  </div>
+  <div class="title">2.Выберите страну и город</div>
+  <div class="content">
+    <form name="form2" novalidate="">
+      <select name="form2" required data-ng-model="data.country" data-ng-options="country.countryName for country in countries"></select>
+      <br>
+      <select required data-ng-model="data.city" data-ng-options="city.name for city in cities | filter : optionsFilter"></select>
+      <br>
+    </form>
+  </div> 
+  <div class="warning"><p data-ng-show="!data.city.name">Выберите сначала страну, а потом город</p></div>
+  <div class="btn-arrow">
+    <a href="#/screen-1">< Предыдущий</a>
+    <a href="#/screen-3" data-ng-class="!data.city.name ? 'disabled' : 'able'">Следующий ></a>
+  </div>
+</div>
