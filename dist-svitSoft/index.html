@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="myApp">
+<head>
+  <meta charset="UTF-8">
+  <title>test SvitSoft</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/vendor.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-ng-controller="mainCtrl">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-2 sidebar">
+        <ul class="nav nav-pills">
+          <li role="presentation"><a href="#/page-1">View 1</a></li>
+          <li role="presentation"><a href="#/page-2">View 2</a></li>
+          <li role="presentation"><a href="#/page-3">View 3</a></li>
+        </ul>
+      </div>
+      <div class="col-md-10 main">
+        <div class="col-sm-4 left-col">
+          <form name="form" novalidate="">
+            <div class="form-group">
+              <label>Name<br>
+              <input type="text" class="form-control" placeholder="Name" required data-ng-model="name" data-ng-minlength="minlength"></label>
+            </div>
+            <div class="form-group">
+              <label>Description<br>
+              <input type="text" class="form-control" placeholder="Description" required data-ng-model="desc" data-ng-minlength="minlength"></label>
+            </div>
+            <div class="form-group">
+              <label>Date<br>
+              <input type="text" class="form-control" placeholder="Date" required data-ng-model="date" data-ng-minlength="minlength"></label>
+            </div>
+            <div class="form-group">
+              <label>Completed <input type="checkbox" data-ng-model="completed"></label>
+            </div>
+            <button class="btn btn-primary" data-ng-click="addTask(name, date, desc, completed); cleanForm();" data-ng-show="statusBtn" data-ng-disabled="form.$invalid">Add</button>
+            <button class="btn btn-primary" data-ng-click="updateTask(id, name, date, desc, completed); cleanForm(); statusBtn=true;" data-ng-hide="statusBtn" data-ng-disabled="form.$invalid">Edit</button>
+          </form>
+        </div>
+        <div class="col-sm-8 right-col" data-ng-view=""></div>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 footer"></div>
+    </div>
+  </div>
+  <script src="scripts/vendor.js"></script>
+  <script src="scripts/app.js"></script>
+</body>
+</html>
