@@ -1,0 +1,638 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>2048</title>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	<style>
+		body {
+			position: fixed;
+			width: 100%;
+			height: 100%;
+			margin: 0px;
+			padding: 0px;
+			font-size: 0px;
+			background: #EFEFEF;
+		}
+			#game-container {
+				position: absolute;
+    			left: 0;
+   				right: 0;
+    			top: 0;
+    			bottom: 0;
+    			margin: auto;
+    			padding: 5px;
+    			/*background: #D8D8D8;*/
+    		}
+	    		.score {
+				    position: absolute;
+                    width: 95px;
+                    height: 75px;
+                    font-size: 30px;
+                    top: -75px;
+                    left: 10px;
+                    line-height: 35px;
+                    text-align: center;
+                    background: #9BAAD6;
+                    color: #FFFFFF;
+                    font-weight: bold;
+                    box-shadow: 0 5px 10px -10px rgba(0, 0, 0, 0.5), 0 1px 4px rgba(0, 0, 0, 0.3);
+				}
+				.restart{
+					position: absolute;
+                    width: 110px;
+                    height: 75px;
+                    font-size: 25px;
+                    top: -75px;
+                    left: 230px;
+                    line-height: 35px;
+                    text-align: center;
+                    background: #9BAAD6;
+                    color: #FFFFFF;
+                    cursor: pointer;
+                    font-weight: bold;
+                    box-shadow: 0 5px 10px -10px rgba(0, 0, 0, 0.5), 0 1px 4px rgba(0, 0, 0, 0.3);
+				}
+				.stepBack{
+					position: absolute;
+                    width: 95px;
+                    height: 75px;
+                    font-size: 25px;
+                    top: -75px;
+                    left: 120px;
+                    line-height: 35px;
+                    text-align: center;
+                    background: #9BAAD6;
+                    color: #FFFFFF;
+                    cursor: pointer;
+                    font-weight: bold;
+                    box-shadow: 0 5px 10px -10px rgba(0, 0, 0, 0.5), 0 1px 4px rgba(0, 0, 0, 0.3);
+				}
+    			.grid-cell{
+    				display: inline-block;
+    				width: 75px;
+    				height: 75px;
+    				margin: 5px;
+    				background: #CDD8DE;
+    				box-shadow: 0 5px 10px -10px rgba(0, 0, 0, 0.5), 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    			}
+				.tile-container {
+				    position: absolute;
+    				top: 0px;
+    				left: 0px;
+    				margin: 5px;
+				}
+					.tile {
+					    position: absolute;
+   						width: 75px;
+   						height: 75px;
+   						margin: 5px;
+   						background: #F8E8F9;
+   						font-family: 'Comic Sans MS';
+   						font-size: 35px;
+   						color: #FFFFFF;
+   						font-weight: bold;
+   						text-align: center;
+   						display: table;
+   						box-shadow: 0 5px 10px -10px rgba(0, 0, 0, 0.5), 0 1px 4px rgba(0, 0, 0, 0.3);
+						-webkit-transition:0.05s;
+						-o-transition:0.05s;
+						-moz-transition:0.05s;
+						transition:0.05s;
+					}
+						.tile span {
+						    display: table-cell;
+						    vertical-align: middle;
+						}
+					.tile-2,.tile-2N{background: #9BAAD6; }
+					.tile-4,.tile-4N{background: #6F89D6;}
+					.tile-8{background: #3F66D8;}
+					.tile-16{background: #133AAD;}
+					.tile-32{background: #70C46A;}
+					.tile-64{background: #3A9F33;}
+					.tile-128{background: #288421;}
+					.tile-256{background: #276822;}
+					.tile-512{background: #FF6F6F;}
+					.tile-1024{font-size: 30px; background: #E23A3A;}
+					.tile-2048{font-size: 30px; background: #BD1111;}
+					.tile-4096{font-size: 30px; background: #6F0000;}
+					.tile-8192{font-size: 30px; background: #A3A0A5;}
+					.tile-16384{font-size: 20px; background: #706D71;}
+					.tile-32768{font-size: 20px; background: #2C292D;}
+					.tile-65536{font-size: 20px; background: #060506;}
+
+					.tile{
+						-webkit-animation-name:flash;
+						-o-animation-name:flash;
+						-moz-animation-name:flash;
+						animation-name:flash;
+
+						-webkit-animation-iteration-count:1;
+						-o-animation-iteration-count:1;
+						-moz-animation-iteration-count:1;
+						animation-iteration-count:1;
+
+						-webkit-animation-duration:0.35s;
+						-o-animation-duration:0.35s;
+						-moz-animation-duration:0.35s;
+						animation-duration:0.35s;}
+
+		@keyframes flash{
+			from {width:15px;
+				  height:15px;
+				  left:30px;
+				  top:30px;
+				  opacity:0;}
+  			to {width:75px;
+  				height:75px;
+  				left:0px;
+  				top:0px;
+  				opacity:1;}
+		}
+		@-webkit-keyframes flash {
+			from {width:15px;
+				  height:15px;
+				  left:30px;
+				  top:30px;
+				  opacity:0;}
+  			to {width:75px;
+  				height:75px;
+  				left:0px;
+  				top:0px;
+  				opacity:1;}
+		} 
+		@-moz-keyframes flash {
+			from {width:15px;
+				  height:15px;
+				  left:30px;
+				  top:30px;
+				  opacity:0;}
+  			to {width:75px;
+  				height:75px;
+  				left:0px;
+  				top:0px;
+  				opacity:1;}
+		}  
+		@-o-keyframes flash {
+			from {width:15px;
+				  height:15px;
+				  left:30px;
+				  top:30px;
+				  opacity:0;}
+  			to {width:75px;
+  				height:75px;
+  				left:0px;
+  				top:0px;
+  				opacity:1;}
+		} 
+
+	</style>
+</head>
+<body>
+	<div id="game-container"></div>
+	<script>
+/*############################---START Constructor GAME2048---############################*/
+		function Game2048(){
+			var self = this; // контекст
+			self.height = 0; // высота(клеточек)
+			self.width = 0;  // ширина(клеточек)
+			self.maxCount = 1;  // количество добавляемых плиток
+			var MAX_COUNT = 2;
+			var VALUE_VAL_END = 1;  // константа для проверки конца игры
+			var tileFalse = 16; // количество нулевых плиток
+			var tileTrue = 0; // количество заполненых плиток
+			var arrTileFalse = []; // массив с координатами пустых ячеек
+			var prevCopyMatrix = []; // сохранённая матрица, до хода
+			var score = 0;
+
+		/*МЕТОД создаём игровую разметку*/
+			self.creategame = function(){
+				$('#game-container > *').remove();
+				$('<div>',{'class':'grid-container'}).appendTo('#game-container');
+				for (var y = 1; y < self.height + 1; y++){
+					var gridRow = $('<div>',{'class':'grid-row row' + y});
+					$(gridRow).appendTo(".grid-container");
+					for(var x = 1; x < self.width + 1; x++){
+						var gridCell = $('<div>', {'class':'grid-cell cell-' + x + '-' + y});
+						$(gridCell).appendTo(gridRow);
+					};
+				};
+				$('#game-container').css('width', function(){var value = $('.grid-cell').outerWidth(true) * self.width;
+					return value;
+				});
+				$('#game-container').css('height', function(){var value = $('.grid-cell').outerHeight(true) * self.height;
+					return value;
+				});
+				// $('head style').append('.grid-row{height:' + $('.grid-cell').outerHeight(true) + 'px}');
+				$('<div>',{'class':'tile-container'}).appendTo('#game-container');
+				$('<div>',{'class':'score'}).appendTo('#game-container');
+				$('<div>',{'class':'stepBack'}).appendTo('#game-container');
+				$('<div>',{'class':'restart'}).appendTo('#game-container');
+				$('.restart').bind('click', self.startAfresh);
+				$('.stepBack').bind('click', self.cancelStep);
+				$('.stepBack').html('<span>Шаг назад</span>');
+				$('.restart').html('<span>Начать заново</span>');
+
+
+				createMatrix(self.width, self.height);
+				self.monitorMatrix();
+				// tileMatrix[0][0] = 2;
+				// tileMatrix[1][0] = 2;
+				// tileMatrix[2][0] = 2;
+				// tileMatrix[3][0] = 2;
+				// tileMatrix[0][1] = 4;
+				// tileMatrix[1][1] = 64;
+				// tileMatrix[2][1] = 128;
+				// tileMatrix[3][1] = 256;
+				// tileMatrix[0][2] = 512;
+				// tileMatrix[1][2] = 1024;
+				// tileMatrix[2][2] = 2048;
+				// tileMatrix[3][2] = 4096;
+				// tileMatrix[0][3] = 4096 * 2;
+				// tileMatrix[1][3] = 4096 * 4;
+				// tileMatrix[2][3] = 4096 * 8;
+				// tileMatrix[3][3] = 4096 * 16;
+				updateTile(); // наполнения поля плитками
+				self.monitorMatrix();
+			};
+		/*МЕТОД создали игровую разметку*/
+
+        /*START функция генерации матрици навигации*/
+			var tileMatrix = new Array();
+			var cloneTileMatrix = new Array();
+			var cloneCloneTileMatrix = new Array();
+			function createMatrix(columns, rows){
+				for (var x = 0; x < columns; x++){
+					tileMatrix[x] = new Array();
+					cloneTileMatrix[x] = new Array();
+					cloneCloneTileMatrix[x] = new Array();
+					for (var y = 0; y < rows; y++){
+						tileMatrix[x][y] = 0;
+						cloneTileMatrix[x][y] = 0;
+						cloneCloneTileMatrix[x][y] = 0;
+					};
+				};
+			};
+        /*END функция генерации матрици навигации*/
+
+		/*START МЕТОД генерации СSS для классов поз*/
+			self.generateCss = function(){
+				var width = $('.grid-cell').outerWidth(true);
+				var height = $('.grid-cell').outerHeight(true);
+				for(var x = 0; x < tileMatrix.length; x++){
+					for(var y = 0; y < tileMatrix[x].length; y++){
+						var cssStr = '.pos-' + (x + 1) + '-' + (y + 1) + '{transform: translate(' + (x * width) + 'px, ' + (y * height) + 'px);}'
+						$('head style').append(cssStr);
+					};
+				};
+			};
+		/*END МЕТОД генерации СSS для классов поз*/
+
+			self.getMatrix = function(){
+				return tileMatrix;
+			};
+
+		/*Strart МЕТОД проверки*/
+			self.monitorMatrix = function(){
+				tileTrue = 0;
+				tileFalse = 0;
+				arrTileFalse = [];
+				for(var x = 0; x < self.width; x++){
+					for(var y = 0; y < self.height; y++){
+						if(tileMatrix[x][y] == 0 || tileMatrix[x][y] == 't'){
+							arrTileFalse.push({X : x, Y : y});
+						};
+						if(tileMatrix[x][y] !== 0 && tileMatrix[x][y] !== 't'){tileTrue += 1};
+					};
+				};
+				tileFalse = arrTileFalse.length;
+			};
+		/*END МЕТОД проверки*/
+
+		/*START функция наполнения поля плитками*/
+			function updateTile(){
+				function validAndAddTile(){
+				self.monitorMatrix();
+					/*START добавление случайных плиток*/
+					var maxCount;
+					if (tileFalse == self.width * self.height){
+						maxCount = MAX_COUNT
+					} else if (tileFalse < self.maxCount){
+						maxCount = tileFalse
+					} else {maxCount = self.maxCount};
+					for(var count = 0; count < maxCount; ){
+						var number = Math.round(Math.random()*(arrTileFalse.length - 1));
+						var ranX = arrTileFalse[number].X;
+						var ranY = arrTileFalse[number].Y;
+						if(Math.random() < 0.7){tileMatrix[ranX][ranY] = 2}
+						else{tileMatrix[ranX][ranY] = 4}
+						arrTileFalse.splice(number, 1)
+						count++;
+						var tile = $('<div>',{'class':'tile tile-' + tileMatrix[ranX][ranY] + ' pos-' + (ranX + 1) + '-' + (ranY + 1)});
+						$('.tile-container').append(tile);
+						$(tile).append('<span>' + parseFloat(tileMatrix[ranX][ranY]) + '</span>');
+					};
+					/*END добавление случайных плиток*/
+
+					for(var x = 0; x < tileMatrix.length; x++){
+						for(var y = 0; y < tileMatrix[x].length; y++){
+							if (tileMatrix[x][y] && tileMatrix[x][y] !=='t' && tileMatrix[x][y] !=='t+'){
+								tileMatrix[x][y] = parseFloat(tileMatrix[x][y]);
+							} else if (tileMatrix[x][y] == 't' || tileMatrix[x][y] == 't+'){
+								tileMatrix[x][y] = 0;
+							};
+						};
+					};
+				};
+				validAndAddTile();
+				$('.score').html('<span>Score: ' + score + '</span>')
+			};
+		/*END функция наполнения поля плитками*/
+
+		/*START функция "заново"*/
+			self.startAfresh = function(){
+				$('.tile-container > *').remove();
+				for(var x = 0; x < tileMatrix.length; x++){
+					for(var y = 0; y < tileMatrix[x].length; y++){
+						tileMatrix[x][y] = 0;
+					};
+				};
+				score = 0;
+				updateTile(); // наполнения поля плитками
+			};
+		/*END функция "заново"*/
+		/*START функция "клон матрицы"*/
+			var prevScore = 0;
+			function cloneMatrix(){
+				for(var x = 0; x < tileMatrix.length; x++){
+					for(var y = 0; y < tileMatrix[x].length; y++){
+						if(DATA) cloneCloneTileMatrix[x][y] = cloneTileMatrix[x][y];
+						cloneTileMatrix[x][y] = tileMatrix[x][y];
+					};
+				};
+				prevScore = score;
+			};
+		/*END функция "клон матрицы"*/
+		/*START функция "отменить ход"*/
+			self.cancelStep = function(){
+
+				$('.tile-container > *').remove();
+				function validAndAddTile(){
+				self.monitorMatrix();
+					for(var x = 0; x < tileMatrix.length; x++){
+						for(var y = 0; y < tileMatrix[x].length; y++){
+							if(DATA) tileMatrix[x][y] = cloneTileMatrix[x][y];
+							if(DATA == 0) tileMatrix[x][y] = cloneCloneTileMatrix[x][y];
+							if (tileMatrix[x][y] && tileMatrix[x][y] !=='t' && tileMatrix[x][y] !=='t+'){
+								var tile = $('<div>',{'class':'tile tile-' + tileMatrix[x][y] + ' pos-' + (x + 1) + '-' + (y + 1)});
+								$('.tile-container').append(tile);
+								$(tile).append('<span>' + parseFloat(tileMatrix[x][y]) + '</span>');
+								tileMatrix[x][y] = parseFloat(tileMatrix[x][y]);
+							} else if (tileMatrix[x][y] == 't' || tileMatrix[x][y] == 't+'){
+								tileMatrix[x][y] = 0;
+							};
+						};
+					};
+				};
+				validAndAddTile();
+				score = prevScore;
+				$('.score').html('<span>Score: ' + score + '</span>')
+			}
+
+		/*END функция "отменить ход"*/
+
+	/*------------------------------ФУНКЦИИ ДЖИЖЕНИЯ------------------------------*/
+		/*Движение влево*/
+					var DATA;
+			self.moveLeft = function(){
+				return function(){
+					if(DATA) cloneMatrix();
+					DATA = 0;
+					for(var y = 0; y < self.height; y++){
+						for(var x = 0; x < self.width; x++){
+							if(!tileMatrix[x][y]) continue;
+								for(var k = x - 1; k >= 0; k--){
+									if(tileMatrix[k][y] !== tileMatrix[x][y] && tileMatrix[k][y] !== 0) break;
+									if(tileMatrix[k][y] == tileMatrix[x][y]){
+										DATA += 1;
+										tileMatrix[k][y] = tileMatrix[k][y] * 2;
+										tileMatrix[x][y] = 't';
+										score += tileMatrix[k][y];
+										var class1 = 'pos-' + (x + 1) + '-' + (y + 1) ;
+										var class2 = 'pos-' + (k + 1) + '-' + (y + 1) ;
+										$('.' + class1).toggleClass(class1).toggleClass(class2);
+										(function(){
+											var cl1 = class1;
+											var cl2 = class2;
+											var value = tileMatrix[k][y];
+											setTimeout(function(){
+												$('.' + cl2).toggleClass('tile-' + (value/2)).toggleClass('tile-' + value);
+												$('.' + cl2).html('<span>' + value + '</span>');
+												$('.' + cl2).eq(1).remove();
+
+											},50)
+										})();
+										break;
+									};
+								};
+								for(var i = 0; i < x; i++){
+									if(tileMatrix[i][y] == 0 || tileMatrix[i][y] == 't'){
+										DATA += 1;
+										tileMatrix[i][y] = tileMatrix[x][y];
+										tileMatrix[x][y] = 0;
+										var class1 = 'pos-' + (x + 1) + '-' + (y + 1) ;
+										var class2 = 'pos-' + (i + 1) + '-' + (y + 1) ;
+										$('.' + class1).toggleClass(class1).toggleClass(class2);
+										break;
+									};
+								};
+						};
+					};
+					if(DATA) updateTile();
+				};
+			};
+		/*-----*/
+
+		/*Движение вправо*/
+			self.moveRight = function(){
+				return function(){
+					if(DATA) cloneMatrix();
+					DATA = 0;
+					for(var y = 0; y < self.height; y++){
+						for(var x = (self.width - 1); x >= 0; x--){
+							if(!tileMatrix[x][y]) continue;
+								for(var k = x + 1; k < self.width; k++){
+									if(tileMatrix[k][y] !== tileMatrix[x][y] && tileMatrix[k][y] !== 0) break;
+									if(tileMatrix[k][y] == tileMatrix[x][y]){
+										DATA += 1;
+										tileMatrix[k][y] = tileMatrix[k][y] * 2;
+										tileMatrix[x][y] = 't';
+										score += tileMatrix[k][y];
+										var class1 = 'pos-' + (x + 1) + '-' + (y + 1) ;
+										var class2 = 'pos-' + (k + 1) + '-' + (y + 1) ;
+										$('.' + class1).toggleClass(class1).toggleClass(class2);
+										(function(){
+											var cl1 = class1;
+											var cl2 = class2;
+											var value = tileMatrix[k][y];
+											setTimeout(function(){
+												$('.' + cl2).toggleClass('tile-' + (value/2)).toggleClass('tile-' + value);
+												$('.' + cl2).html('<span>' + value + '</span>');
+												$('.' + cl2).eq(1).remove();
+											},50)
+										})();
+										break;
+									};
+								};
+								for(var i = (self.width - 1); i > x; i--){
+									if(tileMatrix[i][y] == 0 || tileMatrix[i][y] == 't'){
+										DATA += 1;
+										tileMatrix[i][y] = tileMatrix[x][y];
+										tileMatrix[x][y] = 0;
+										var class1 = 'pos-' + (x + 1) + '-' + (y + 1) ;
+										var class2 = 'pos-' + (i + 1) + '-' + (y + 1) ;
+										$('.' + class1).toggleClass(class1).toggleClass(class2);
+										break;
+									};
+								};
+						};
+					};
+					if(DATA) updateTile();
+				};
+			};
+		/*-----*/
+
+		/*Движение вниз*/
+			self.moveDown = function(){
+				return function(){
+					if(DATA) cloneMatrix();
+					DATA = 0;
+					for(var x = 0; x < self.width; x++){
+						for(var y = (self.height - 1); y >= 0; y--){
+							if(!tileMatrix[x][y]) continue;
+								for(var k = y + 1; k < self.height; k++){
+									if(tileMatrix[x][k] !== tileMatrix[x][y] && tileMatrix[x][k] !== 0) break;
+									if(tileMatrix[x][k] == tileMatrix[x][y]){
+										DATA += 1;
+										tileMatrix[x][k] = tileMatrix[x][k] * 2;
+										tileMatrix[x][y] = 't';
+										score += tileMatrix[x][k];
+										var class1 = 'pos-' + (x + 1) + '-' + (y + 1) ;
+										var class2 = 'pos-' + (x + 1) + '-' + (k + 1) ;
+										$('.' + class1).toggleClass(class1).toggleClass(class2);
+										(function(){
+											var cl1 = class1;
+											var cl2 = class2;
+											var value = tileMatrix[x][k];
+											setTimeout(function(){
+												$('.' + cl2).toggleClass('tile-' + (value/2)).toggleClass('tile-' + value);
+												$('.' + cl2).html('<span>' + value + '</span>');
+												$('.' + cl2).eq(1).remove();
+											},50)
+										})();
+										break;
+									};
+								};
+								for(var i = (self.height - 1); i > y; i--){
+									if(tileMatrix[x][i] == 0 || tileMatrix[x][i] == 't'){
+										DATA += 1;
+										tileMatrix[x][i] = tileMatrix[x][y];
+										tileMatrix[x][y] = 0;
+										var class1 = 'pos-' + (x + 1) + '-' + (y + 1) ;
+										var class2 = 'pos-' + (x + 1) + '-' + (i + 1) ;
+										$('.' + class1).toggleClass(class1).toggleClass(class2);
+										break;
+									};
+								};
+						};
+					};
+					if(DATA) updateTile();
+				};
+			};
+		/*-----*/
+
+		/*Движение вверх*/
+			self.moveUp = function(){
+				return function(){
+					if(DATA) cloneMatrix();
+					DATA = 0;
+					for(var x = 0; x < self.width; x++){
+						for(var y = 0; y < self.height; y++){
+							if(!tileMatrix[x][y]) continue;
+								for(var k = y - 1; k >= 0; k--){
+									if(tileMatrix[x][k] !== tileMatrix[x][y] && tileMatrix[x][k] !== 0) break;
+									if(tileMatrix[x][k] == tileMatrix[x][y]){
+										DATA += 1;
+										tileMatrix[x][k] = tileMatrix[x][k] * 2;
+										tileMatrix[x][y] = 't';
+										score += tileMatrix[x][k];
+										var class1 = 'pos-' + (x + 1) + '-' + (y + 1) ;
+										var class2 = 'pos-' + (x + 1) + '-' + (k + 1) ;
+										$('.' + class1).toggleClass(class1).toggleClass(class2);
+										(function(){
+											var cl1 = class1;
+											var cl2 = class2;
+											var value = tileMatrix[x][k];
+											setTimeout(function(){
+												$('.' + cl2).toggleClass('tile-' + (value/2)).toggleClass('tile-' + value);
+												$('.' + cl2).html('<span>' + value + '</span>');
+												$('.' + cl2).eq(1).remove();
+											},50)
+										})();
+										break;
+									};
+								};
+								for(var i = 0; i < y; i++){
+									if(tileMatrix[x][i] == 0 || tileMatrix[x][i] == 't'){
+										DATA += 1;
+										tileMatrix[x][i] = tileMatrix[x][y];
+										tileMatrix[x][y] = 0;
+										var class1 = 'pos-' + (x + 1) + '-' + (y + 1) ;
+										var class2 = 'pos-' + (x + 1) + '-' + (i + 1) ;
+										$('.' + class1).toggleClass(class1).toggleClass(class2);
+										break;
+									};
+								};
+						};
+					};
+					if(DATA) updateTile();
+				};
+			};
+		/*-----*/
+	/*------------------------------END ФУНКЦИИ ДЖИЖЕНИЯ------------------------------*/
+
+		};
+			var game = new Game2048();
+			game.height = 4;
+			game.width = 4;
+			game.maxCount = 1;
+			game.creategame();
+			game.generateCss();
+
+			var massFunct = [];
+
+			$(document).keydown(function(e){
+                switch (e.keyCode) {
+                    case 37:
+                        massFunct.push(game.moveLeft());
+                        break;
+                    case 38:
+                        massFunct.push(game.moveUp());
+                        break;
+                    case 39:
+                        massFunct.push(game.moveRight());
+                        break;
+                    case 40:
+                        massFunct.push(game.moveDown());
+                        break;
+                };
+            });
+            function doFunction(){
+            	if(massFunct.length){
+            		massFunct.shift()()
+            	};
+            };
+            setInterval(doFunction, 60)
+	</script>
+</body>
+</html>
