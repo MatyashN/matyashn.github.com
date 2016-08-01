@@ -628,6 +628,18 @@
                         break;
                 };
             });
+			$("html").on("swipeleft",function(){
+        massFunct.push(game.moveLeft());
+			});
+			$("html").on("swiperight",function(){
+        massFunct.push(game.moveRight());
+			});
+			$('html').on('swipedown',function(){
+        massFunct.push(game.moveDown());
+			});
+			$('html').on('swipeup',function(){
+        massFunct.push(game.moveUp());
+			});
             function doFunction(){
             	if(massFunct.length){
             		massFunct.shift()()
